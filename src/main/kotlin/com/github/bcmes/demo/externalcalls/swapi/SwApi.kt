@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable
 
 @FeignClient(
     name = "SWAPI",
-    url = "https://swapi.dev/api"
+    url = "https://swapi.dev/api",
+    configuration = [MyRequestInterceptor::class]
 )
 interface SwApi {
 
