@@ -1,0 +1,23 @@
+package com.github.bcmes.demo.externalcalls.swapi.circuitbreaker
+
+import com.github.bcmes.demo.externalcalls.swapi.SwApi
+import org.springframework.cloud.openfeign.FallbackFactory
+import org.springframework.stereotype.Component
+
+/**
+ * A vantagem deste e que tenho o motivo da abertura do disjuntor.
+ * Se houver uma implementacao de ErrorDecoder, por exemplo, voce
+ * podera obter o re-lancamento do erro dela pela "create(cause: Throwable?)"
+ */
+@Component
+class SwApiFallbackFactory : FallbackFactory<SwApi> {
+    override fun create(cause: Throwable?): SwApi {
+        return object : SwApi {
+            override fun getPeople(idPeople: Int): Any {
+                return object {
+                    val qualABronca = "Error: ${cause?.localizedMessage}"
+                }
+            }
+        }
+    }
+}
