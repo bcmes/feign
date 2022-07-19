@@ -10,17 +10,15 @@ import org.springframework.context.annotation.Configuration
 import java.time.Duration
 
 
-@Configuration
+//@Configuration //Se este bean for gerado, ele tera precedencia sobre a configuracao do .properties
 class ConfigureCircuitBreaker {
     @Bean
     fun configureResilience4J() = Customizer<Resilience4JCircuitBreakerFactory> { resilience4JCircuitBreakerFactory ->
         resilience4JCircuitBreakerFactory.configureDefault {
                 Resilience4JConfigBuilder(it)
-                    .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(50)).build())
+                    .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(1)).build())
                     .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
                     .build()
             }
     }
 }
-//TODO: A configuracao acima e global, mas o ideal e a configuracao personalizada
-// para cada FeignClient, pois cada host tem suas caracteristicas.

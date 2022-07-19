@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 
-class MyRequestInterceptor {
+class MyInterceptors {
     /**
      * Intercepto a requisição antes de acontecer, e posso manipular
      * através do RequestTemplate, headers, body, queries, uri, etc..

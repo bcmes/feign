@@ -1,4 +1,4 @@
-package com.github.bcmes.demo.externalcalls.swapi
+package com.github.bcmes.demo.externalcalls
 
 import feign.codec.ErrorDecoder
 import org.springframework.context.annotation.Bean
@@ -16,3 +16,12 @@ class TratadorDeErroGlobal {
         throw RuntimeException("ERROR GLOBAL 404")
     }
 }
+
+/**
+ * Quando vc cria configuracoes customizadas para seus beans FeignClient, atraves
+ * do @FeignClient(... ,configuration = [ExampleInterceptor::class]), a classe
+ * ExampleInterceptor.class, nao deve ser anotada com @Component. Caso seja anotada,
+ * ela ira substituir o comportamento padrao para todos os beans FeignClients, que nao
+ * possuam um configuration especificado para si.
+ *
+ */

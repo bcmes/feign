@@ -1,6 +1,6 @@
 package com.github.bcmes.demo.externalcalls.swapi.circuitbreaker
 
-import com.github.bcmes.demo.externalcalls.swapi.SwApi
+import com.github.bcmes.demo.externalcalls.swapi.ExternalCallSwapi
 import org.springframework.cloud.openfeign.FallbackFactory
 import org.springframework.stereotype.Component
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component
  * podera obter o re-lancamento do erro dela pela "create(cause: Throwable?)"
  */
 @Component
-class SwApiFallbackFactory : FallbackFactory<SwApi> {
-    override fun create(cause: Throwable?): SwApi {
-        return object : SwApi {
-            override fun getPeople(idPeople: Int): Any {
+class MyFallbackFactory : FallbackFactory<ExternalCallSwapi> {
+    override fun create(cause: Throwable?): ExternalCallSwapi {
+        return object : ExternalCallSwapi {
+            override fun getPeople(): Any {
                 return object {
                     val qualABronca = "Error: ${cause?.localizedMessage}"
                 }
