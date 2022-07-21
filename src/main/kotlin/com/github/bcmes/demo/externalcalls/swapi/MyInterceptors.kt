@@ -1,6 +1,7 @@
 package com.github.bcmes.demo.externalcalls.swapi
 
 import feign.FeignException
+import feign.Logger
 import feign.RequestInterceptor
 import feign.RetryableException
 import feign.Retryer

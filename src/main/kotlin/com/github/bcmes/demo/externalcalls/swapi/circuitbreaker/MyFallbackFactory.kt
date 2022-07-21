@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component
 class MyFallbackFactory : FallbackFactory<ExternalCallSwapi> {
     override fun create(cause: Throwable?): ExternalCallSwapi {
         return object : ExternalCallSwapi {
-            override fun getPeople(): Any {
+            override fun getPeople(idPeople: Int): Any {
                 return object {
                     val qualABronca = "Error: ${cause?.localizedMessage}"
                 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component
  */
 @Component
 class MyFallback : ExternalCallSwapi {
-    override fun getPeople(): Any {
+    override fun getPeople(idPeople: Int): Any {
         return object {
             val description = "Retorno de fallback padrao."
         }

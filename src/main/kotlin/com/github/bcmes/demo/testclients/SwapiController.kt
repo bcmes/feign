@@ -13,6 +13,6 @@ class SwapiController(
 ) {
     @GetMapping("/{idCharacter}")
     fun getCharacter(@PathVariable idCharacter: Int): Any {
-        return externalCallSwapi.getPeople()
+        return externalCallSwapi.getPeople(idCharacter)
     }
 }
